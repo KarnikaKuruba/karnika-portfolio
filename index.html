@@ -654,11 +654,12 @@ const projects = [
     description:'Developed a comprehensive organizational phishing detection and awareness module, including simulated phishing campaigns targeting realistic attack vectors.',
     bullets:['Developed organizational phishing detection and awareness module with simulated campaigns.','Reinforced digital ethics and governance policies across the organization.','Improved employee awareness and reduced successful phishing attempts significantly.'],
     metric:'↓ Phishing', metricLabel:'Success Rate' },
-  { title:'AI-Driven Attack Simulation & Defense Evaluation', subtitle:'MITRE ATT&CK / SIEM Detection Research', icon:'cpu', color:'purple',
+  { title:'AI-Driven Attack Simulation & Defense Evaluation (ThreatWatch)', subtitle:'MITRE ATT&CK / SIEM Detection Research', icon:'cpu', color:'purple',
     tags:['MITRE ATT&CK','Wazuh','Sysmon','Atomic Red Team','Vercel','Threat Watch','AI'],
     description:'Simulated real-world attack techniques aligned with MITRE ATT&CK and evaluated SIEM detection effectiveness by analyzing alert generation and time-to-detect across scenarios.',
     bullets:['Simulated real-world attack techniques aligned with MITRE ATT&CK using Atomic Red Team and Sysmon.','Evaluated SIEM detection effectiveness (Wazuh) by analyzing alert generation and time-to-detect across scenarios.','Identified detection gaps and developed AI-based alert prioritization to reduce alert fatigue and improve incident response efficiency.'],
-    metric:'AI-Powered', metricLabel:'Alert Triage' },
+    metric:'AI-Powered', metricLabel:'Alert Triage',
+    images:['assets/projects/threatwatch-alert.jpg','assets/projects/threatwatch-response.jpg'] },
   { title:'Microsoft Defender Lab — Endpoint Threat Investigation', subtitle:'Lab Tenant / SOC Runbook', icon:'monitor-check', color:'cyan',
     tags:['Microsoft Defender','KQL','Phishing Simulation','Lateral Movement','Incident Response','IOC'],
     description:'Deployed Microsoft Defender for Endpoint in a lab tenant; simulated phishing, credential theft, and lateral movement scenarios, then investigated alerts end-to-end using the Defender portal and advanced hunting (KQL).',
@@ -830,7 +831,7 @@ document.getElementById('projects-grid').innerHTML = projects.map((p,i)=>`
       <ul class="space-y-2 border-t border-cyan-400/10 pt-4">
         ${p.bullets.map(b=>`<li class="flex gap-3 text-xs text-cyan-100/60 font-mono leading-relaxed"><span class="text-cyan-400 flex-shrink-0">▸</span>${esc(b)}</li>`).join('')}
       </ul>
-      ${p.image?`<img src="${esc(p.image)}" alt="${esc(p.title)} screenshot" loading="lazy" class="mt-4 w-full rounded border border-cyan-400/20">`:''}
+      ${(p.images||(p.image?[p.image]:[])).map(src=>`<img src="${esc(src)}" alt="${esc(p.title)} screenshot" loading="lazy" class="mt-4 w-full rounded border border-cyan-400/20">`).join('')}
       ${p.link?`<a href="${esc(p.link)}" target="_blank" rel="noopener" class="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded border border-cyan-400/30 font-mono text-xs ${cmText[p.color]} hover:bg-cyan-400/10"><i data-lucide="external-link" class="w-3 h-3"></i> View on GitHub</a>`:''}
     </div>
   </details>`).join('');
